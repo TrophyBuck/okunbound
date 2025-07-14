@@ -1,3 +1,7 @@
+container:
+  image: "ghcr.io/trophybuck/okunbound:latest"
+  imagePullPolicy: "Always"
+
 replicas: 2
 memRequest: "32Mi"
 memLimit: "64Mi"
