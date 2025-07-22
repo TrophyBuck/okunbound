@@ -9,4 +9,4 @@ metadata:
     release: {{ .Release.Name  }}
 data:
   unbound.conf: |-
-{{ .Files.Get "unbound.conf" | indent 4 }}
+  {{- tpl ($.Files.Get "unbound.conf.tpl") . | nindent 4 }}
