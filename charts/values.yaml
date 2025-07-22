@@ -1,11 +1,16 @@
-container:
-  image: "ghcr.io/trophybuck/okunbound:latest"
-  imagePullPolicy: "Always"
+image:
+  repository: "ghcr.io/trophybuck/okunbound"
+  pullPolicy: "Always"
+  tag: "latest"
+
+imagePullSecrets: []
 
 replicas: 2
-memRequest: "32Mi"
-memLimit: "64Mi"
-cpuRequest: "100m"
-verbosity: 1
-numThreads: 1
-clusterIpv4Cidr:
+
+resoures:
+  limits:
+    cpu: 200m
+    memory: 64Mi
+  requests:
+    cpu: 100m
+    memory: 32Mi
