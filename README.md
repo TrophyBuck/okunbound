@@ -1,14 +1,17 @@
 # okunbound
 
-This repository demonstrates a kubernetes installation of the [unbound](http://www.unbound.net) DNSSEC compliant name resolver using docker, kubectl and helm. It's built as a refactor of a project [kunbound](), but done in a minimal effort way that largely maintains unbound's configuration method (hence the "ok" in the name).  The repo contains a dockerfile and helm chart to assist with building the image (if you don't want to just pull it from my hub account) and installing the helm chart into your cluster.
+This repository demonstrates a kubernetes installation of the [unbound](http://www.unbound.net) DNSSEC compliant name resolver using docker, kubectl and helm. It's built as a minor refactor of [kunbound](https://github.com/Markbnj/kunbound), but done in a minimal effort way that largely maintains unbound's configuration method (hence the "ok" in the name).  The repo contains a dockerfile and helm chart to assist with building the image (if you don't want to just pull it from my hub account) and installing the helm chart into your cluster.
+
+## Why the fork?
+
+While the original repo likely still works, I wanted to reduce it's build and configuration complexity.  In particular, moving away from `make` and having to map all of the configuration options from helm values into unbound, especially since `unbound.conf` does not follow the same YAML rules helm does (i.e. it has repeated properties).  I wanted this to be a project I setup once, and hopefully not mess with for a long time (outside of building updated docker images).
 
 ## Requirements
 
 * [docker](https://www.docker.com/)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * [helm](https://helm.sh/)
-
-In addition you'll obviously need a running kubernetes cluster. The yaml and scripts in kunbound were tested with kubectl 1.7.5 and helm 2.5.0 running against a cluster with master and nodes at 1.7.5 running in Google Container Engine. There are no GKE dependencies so this should work anywhere the above tools work.
+* Working Kubernetes cluster
 
 ## Repository structure
 
@@ -20,11 +23,11 @@ okunbound/
 
 ## Building the Docker image
 
-A Dockerfile is included to enable easily building and pushing the Docker image if desired over the already built image.  Change the corresponding value in the helm chart to use your image URL if you do so..
+A Dockerfile is included to enable easily building and pushing the Docker image if desired over the already built image.  Change the corresponding `image.repository` value in the helm chart to use your image URL if you do so.
 
 ### To install the chart
 
-TODO rewrite
+Modify both the `values.yaml` and `unbound.conf` as needed for your use case, then deploy using your preferred method for Helm charts (in my case, [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)). 
 
 ## Update kube-dns to set the upstream
 
