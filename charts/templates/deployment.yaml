@@ -38,7 +38,7 @@ spec:
           protocol: "UDP"
         volumeMounts:
         - name: "unbound-conf"
-          mountPath: "/etc/unbound/"
+          mountPath: "/etc/unbound/" #TODO this may need the filename, but it originally didn't have it
           readOnly: true
         livenessProbe:
           exec:
@@ -59,4 +59,4 @@ spec:
       volumes:
       - name: "unbound-conf"
         configMap:
-          name: {{ template "fullname" . }}
+          name: "unbound-conf"
