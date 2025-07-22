@@ -31,7 +31,11 @@ Modify both the `values.yaml` and `unbound.conf` as needed for your use case, th
 
 ## Update kube-dns to set the upstream
 
-TODO update
+**Note:** The section below here has been left  unchanged from kunbound, but I would **highly** recommend changing your router's DNS settings instead if you're using unbound for a homelab setup, and you have access to those settings.  You'll need to in order to use unbound for WAN routing anyway, and I'm not certain how current or stable the changes below are (I think the instructions were before CoreDNS, but I haven't looked in depth).  Search for your specific router's admin settings to point to unbound for DNS.  
+
+If you do want to explore changing this and happen to run [Talos](https://talos.dev/) Kubernetes nodes, [this GitHub issue thread](https://github.com/siderolabs/talos/discussions/10012) is probably a good starting point to make those changes part of your Talos YAML files.
+
+---
 
 To get kube-dns to forward to a specific upstream for a private DNS zone we can edit its configmap in the kube-system namespace:
 
