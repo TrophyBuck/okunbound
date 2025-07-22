@@ -40,22 +40,22 @@ spec:
           - name: "unbound-conf"
             mountPath: "/etc/unbound/" #TODO this may need the filename, but it originally didn't have it
             readOnly: true
-          # livenessProbe:
-          #   exec:
-          #     command:
-          #       - "nslookup"
-          #       - "health.check.unbound"
-          #       - "127.0.0.1"
-          #   initialDelaySeconds: 10
-          #   timeoutSeconds: 2
-          # readinessProbe:
-          #   exec:
-          #     command:
-          #       - "nslookup"
-          #       - "health.check.unbound"
-          #       - "127.0.0.1"
-          #   initialDelaySeconds: 10
-          #   timeoutSeconds: 2
+          livenessProbe:
+            exec:
+              command:
+                - "nslookup"
+                - "health.check.unbound"
+                - "127.0.0.1"
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+          readinessProbe:
+            exec:
+              command:
+                - "nslookup"
+                - "health.check.unbound"
+                - "127.0.0.1"
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
       volumes:
       - name: "unbound-conf"
         configMap:
