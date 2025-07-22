@@ -11,11 +11,8 @@ EXPOSE 53/udp
 
 WORKDIR /etc/unbound
 
-# the default conf just forwards to google public dns
-COPY unbound.conf /etc/unbound/
-
 # entry point takes care of starting up unbound
-COPY entrypoint.sh /bin/entrypoint.sh
+COPY ./entrypoint.sh /bin/entrypoint.sh
 RUN chmod 755 /bin/entrypoint.sh
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
