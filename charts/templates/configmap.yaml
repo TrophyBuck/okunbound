@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: unbound-conf
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app: {{ template "fullname" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name  }}
+data:
+  unbound.conf: |-
+{{ .Files.Get "unbound.conf" | indent 4 }}

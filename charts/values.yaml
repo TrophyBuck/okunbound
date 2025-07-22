@@ -1,0 +1,16 @@
+image:
+  repository: "ghcr.io/trophybuck/okunbound"
+  pullPolicy: "Always"
+  tag: "latest"
+
+imagePullSecrets: []
+
+replicas: 2
+
+resoures:
+  limits:
+    cpu: 200m
+    memory: 64Mi
+  requests:
+    cpu: 100m
+    memory: 32Mi
