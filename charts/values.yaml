@@ -9,8 +9,6 @@ replicas: 2
 
 serviceType: LoadBalancer
 
-unboundConfigTemplate: "unbound.conf.tpl"
-
 resoures:
   limits:
     cpu: 200m
@@ -18,3 +16,23 @@ resoures:
   requests:
     cpu: 100m
     memory: 32Mi
+
+unboundConfigTpl: |-
+  server:
+    verbosity: 1
+    interface: 0.0.0.0
+    access-control: 0.0.0.0/0 allow
+    so-reuseport: yes
+    do-daemonize: no
+    logfile: ""
+    use-syslog: no
+
+    # record used for the liveness/readiness probes
+    local-data: "health.check.unbound A 10.10.10.10"
+    local-data-ptr: "10.10.10.10 health.check.unbound"
+
+  # google public dns
+  forward-zone:
+      name: "."
+      forward-addr: 8.8.8.8
+      forward-addr: 8.8.4.4

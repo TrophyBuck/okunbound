@@ -9,4 +9,4 @@ metadata:
     release: {{ .Release.Name  }}
 data:
   unbound.conf: |-
-  {{- tpl ($.Files.Get .Values.unboundConfigTemplate) . | nindent 4 }}
+  {{- tpl (.Values.unboundConfigTpl) . | nindent 4 }}

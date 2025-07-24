@@ -27,7 +27,7 @@ A Dockerfile is included to enable easily building and pushing the Docker image 
 
 ### To install the chart
 
-Modify both the `values.yaml` and `unbound.conf.tpl` as needed for your use case, then deploy using your preferred method for Helm charts (in my case, [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)). The config is a template file in case you need to lookup other services or IPs to assign DNS addresses.
+Modify the `values.yaml` as needed for your use case, then deploy using your preferred method for Helm charts (in my case, [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)). The `unboundConfTpl` property is read as a template file in its `ConfigMap` in case you need to lookup other services or IPs to assign DNS addresses.
 
 ## Update kube-dns to set the upstream
 
