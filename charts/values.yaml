@@ -9,6 +9,8 @@ replicas: 2
 
 serviceType: LoadBalancer
 
+unboundConfigTemplate: "unbound.conf.tpl"
+
 resoures:
   limits:
     cpu: 200m
